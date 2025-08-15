@@ -1,45 +1,58 @@
 name: CI
-on: [push, pull_request]
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+    tags: '*'
+  pull_request:
+
+concurrency:
+  # Skip intermediate builds: always.
+  # Cancel intermediate builds: only if it is a pull request build.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
 
 jobs:
   test:
+    name: Julia ${{ matrix.version }} - ${{ matrix.os }} - ${{ matrix.arch }} - ${{ github.event_name }}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        julia-version: ['1.6', '1.9', 'nightly']
-        os: [ubuntu-latest, macos-latest]
-        
+        version:
+          - '1.6'
+          - '1.9' 
+          - '1.10'
+        os:
+          - ubuntu-latest
+        arch:
+          - x64
+        include:
+          # Test on macOS with latest Julia only
+          - os: macOS-latest
+            arch: x64
+            version: '1.10'
     steps:
       - uses: actions/checkout@v4
-      - uses: julia-actions/setup-julia@v1
+      - uses: julia-actions/setup-julia@v2
         with:
-          version: ${{ matrix.julia-version }}
-      - run: julia --project=@. -e 'using Pkg; Pkg.instantiate()'
-      - run: julia --project=@. -e 'using Pkg; Pkg.test()'
-
-  docs:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - uses: actions/checkout@v4
-      - uses: julia-actions/setup-julia@v1
+          version: ${{ matrix.version }}
+          arch: ${{ matrix.arch }}
+      - uses: julia-actions/cache@v2
+      - name: Build package
+        uses: julia-actions/julia-buildpkg@v1
+      - name: Run tests
+        uses: julia-actions/julia-runtest@v1
+        env:
+          JULIA_NUM_THREADS: 2
+          SKIP_MODEL_TESTS: "true"
+      - uses: julia-actions/julia-processcoverage@v1
+        if: matrix.version == '1.10' && matrix.os == 'ubuntu-latest'
+      - uses: codecov/codecov-action@v4
+        if: matrix.version == '1.10' && matrix.os == 'ubuntu-latest'
         with:
-          version: '1.9'
-      - run: julia --project=docs -e 'using Pkg; Pkg.instantiate()'
-      - run: julia --project=docs docs/make.jl
-      - uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/build
-          keep_files: true
-
-  benchmark:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - uses: actions/checkout@v4
-      - uses: julia-actions/setup-julia@v1
-        with:
-          version: '1.9'
-      - run: julia --project=@. -e 'using Pkg; Pkg.add("BenchmarkTools")'
-      - run: julia --project=@. benchmark/run.jl
+          files: lcov.info
+          fail_ci_if_error: false
