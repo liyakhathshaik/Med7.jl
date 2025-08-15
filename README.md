@@ -1,7 +1,7 @@
 # Med7.jl
 
-[![Build Status](https://github.com/YOUR_USERNAME/Med7.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/YOUR_USERNAME/Med7.jl/actions/workflows/CI.yml?query=branch%3Amain)
-[![Coverage](https://codecov.io/gh/YOUR_USERNAME/Med7.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/YOUR_USERNAME/Med7.jl)
+[![Build Status](https://github.com/liyakhathshaik/Med7.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/liyakhathshaik/Med7.jl/actions/workflows/CI.yml?query=branch%3Amain)
+[![Coverage](https://codecov.io/gh/liyakhathshaik/Med7.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/liyakhathshaik/Med7.jl)
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
 
 A robust Julia package for medical named entity recognition (NER) using transformer models. Med7.jl provides state-of-the-art extraction of medical entities like drugs, dosages, frequencies, and routes from clinical text.
@@ -106,7 +106,7 @@ Med7.jl automatically tries multiple models in order of preference:
 ## Development
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Med7.jl.git
+git clone https://github.com/liyakhathshaik/Med7.jl.git
 cd Med7.jl
 julia --project=. -e "using Pkg; Pkg.instantiate()"
 julia --project=. -e "using Pkg; Pkg.test()"
@@ -129,14 +129,15 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ```bibtex
 @software{med7_jl,
   title = {Med7.jl: Medical Named Entity Recognition for Julia},
-  author = {Your Name},
-  year = {2024},
-  url = {https://github.com/YOUR_USERNAME/Med7.jl}
+  author = {Liyakhath Shaik},
+  year = {2025},
+  url = {https://github.com/liyakhathshaik/Med7.jl}
 }
 ```
 
 ## Acknowledgments
 
-- Built on [Transformers.jl](https://github.com/chengchingwen/Transformers.jl)
-- Uses [Tokenizers.jl](https://github.com/chengchingwen/Tokenizers.jl)
+- Built with [PyCall.jl](https://github.com/JuliaPy/PyCall.jl) for Python integration
+- Uses [HTTP.jl](https://github.com/JuliaWeb/HTTP.jl) for web requests
+- JSON handling via [JSON3.jl](https://github.com/quinnj/JSON3.jl)
 - Inspired by the original [Med7](https://github.com/kormilitzin/med7) Python package
