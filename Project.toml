@@ -1,0 +1,13 @@
+name = "Med7"
+uuid = "18530643-6da0-4564-9321-b44422f72275"
+authors = ["LIYAKHATH.SHAIK <liyakhath0409@gmail.com>"]
+version = "0.1.0"
+
+[deps]
+Tokenizers = "d7f24921-e9c3-46f3-9e4d-ade1077e8602"
+Transformers = "cb13a0c0-8a3d-11e9-32e7-9d50361a1f4e"
+
+[compat]
+julia = "1.6"
+Tokenizers = "0.15"
+Transformers = "0.4"
