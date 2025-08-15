@@ -1,5 +1,7 @@
 # Simple test file that should work
 include("minimal_test.jl")
+
+@testset "Med7 Core Tests" begin
     model = Med7.load_model(; batch_size=4)
     
     @testset "Model Loading" begin
