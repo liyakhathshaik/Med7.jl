@@ -1,7 +1,7 @@
 using Documenter, Med7
 
 makedocs(
-    sitename = "Med7.jl",
+    sitename = "MediSeven.jl",
     format = Documenter.HTML(prettyurls = get(ENV, "CI", "false") == "true"),
     modules = [Med7],
     pages = [
@@ -13,6 +13,6 @@ makedocs(
 )
 
 deploydocs(
-    repo = "github.com/YOUR_GITHUB_USERNAME/Med7.jl.git",
+    repo = "github.com/YOUR_GITHUB_USERNAME/MediSeven.jl.git",
     devbranch = "main"
 )

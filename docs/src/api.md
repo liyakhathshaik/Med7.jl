@@ -1,8 +1,8 @@
 ```@docs
-Med7.Med7Model
-Med7.Entity
-Med7.Doc
-Med7.load_model
-Med7.process!
-Med7.process_batch!
+MediSeven.Med7Model
+MediSeven.Entity
+MediSeven.Doc
+MediSeven.load_model
+MediSeven.process!
+MediSeven.process_batch!
 ```

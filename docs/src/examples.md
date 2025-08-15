@@ -3,9 +3,9 @@
 
 ## Basic Usage
 ```julia
-using Med7
+using MediSeven
 
-model = Med7.load_model()
+model = MediSeven.load_model()
 doc = model("Take 2 aspirin tablets after meals")
 
 for ent in doc.ents
