@@ -2,12 +2,12 @@
 using MediSeven
 using Test
 
-println("Testing Med7 module loading...")
+println("Testing MediSeven module loading...")
 
 @testset "Minimal Tests" begin
     @testset "Module Constants" begin
-        @test isdefined(Med7, :ENTITY_TYPES)
-        @test isdefined(Med7, :FALLBACK_MODELS)
+        @test isdefined(MediSeven, :ENTITY_TYPES)
+        @test isdefined(MediSeven, :FALLBACK_MODELS)
         @test typeof(MediSeven.ENTITY_TYPES) == Vector{String}
         @test typeof(MediSeven.FALLBACK_MODELS) == Vector{String}
     end
@@ -28,7 +28,7 @@ println("Testing Med7 module loading...")
     
     @testset "Model Loading (Basic)" begin
         model = MediSeven.load_model(batch_size=1)
-        @test typeof(model) == MediSeven.Med7Model
+        @test typeof(model) == MediSeven.MediSevenModel
         @test model.batch_size == 1
     end
     

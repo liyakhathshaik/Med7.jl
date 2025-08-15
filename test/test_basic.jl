@@ -3,11 +3,11 @@ using Test
 
 @testset "Basic Structure Tests" begin
     @testset "Module Loading" begin
-        @test isdefined(Med7, :Med7Model)
-        @test isdefined(Med7, :Entity)
-        @test isdefined(Med7, :Doc)
-        @test isdefined(Med7, :ENTITY_TYPES)
-        @test isdefined(Med7, :FALLBACK_MODELS)
+        @test isdefined(MediSeven, :MediSevenModel)
+        @test isdefined(MediSeven, :Entity)
+        @test isdefined(MediSeven, :Doc)
+        @test isdefined(MediSeven, :ENTITY_TYPES)
+        @test isdefined(MediSeven, :FALLBACK_MODELS)
     end
     
     @testset "Entity Types" begin

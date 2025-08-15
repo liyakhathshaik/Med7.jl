@@ -1,9 +1,9 @@
-using Documenter, Med7
+using Documenter, MediSeven
 
 makedocs(
     sitename = "MediSeven.jl",
     format = Documenter.HTML(prettyurls = get(ENV, "CI", "false") == "true"),
-    modules = [Med7],
+    modules = [MediSeven],
     pages = [
         "Home" => "index.md",
         "API Reference" => "api.md",
