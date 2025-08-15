@@ -114,8 +114,8 @@ Process a medical text and extract entities.
 ```julia
 model = Med7.load_model()
 doc = model("Patient prescribed 20mg lisinopril twice daily")
-for ent in doc.ents
-    println("$(ent.text) -> $(ent.label)")
+for entity in doc.ents
+    println("$(entity.text) -> $(entity.label)")
 end
 ```
 """
@@ -157,19 +157,20 @@ function (model::Med7Model)(text::String)
         doc = model.nlp(text)
         entities = Entity[]
         
-        for ent in doc.ents
+        for entity in doc.ents
             push!(entities, Entity(
-                Int(ent.start_char) + 1,  # Julia uses 1-based indexing
-                Int(ent.end_char),
-                String(ent.label_),
-                String(ent.text)
+                Int(entity.start_char) + 1,  # Julia uses 1-based indexing
+                Int(entity.end_char),
+                String(entity.label_),
+                String(entity.text)
             ))
         end
         
         return Doc(text, entities)
     catch e
         @warn "spaCy processing failed: $e. Using pattern-based fallback."
-        return model(text)  # Recursive call will use pattern matching
+        # Use pattern matching fallback
+        return Med7Model(nothing, model.batch_size)(text)
     end
 end
 
@@ -204,12 +205,12 @@ function (model::Med7Model)(texts::Vector{String})
         
         for (i, doc) in enumerate(spacy_docs)
             entities = Entity[]
-            for ent in doc.ents
+            for entity in doc.ents
                 push!(entities, Entity(
-                    Int(ent.start_char) + 1,
-                    Int(ent.end_char), 
-                    String(ent.label_),
-                    String(ent.text)
+                    Int(entity.start_char) + 1,
+                    Int(entity.end_char), 
+                    String(entity.label_),
+                    String(entity.text)
                 ))
             end
             push!(docs, Doc(texts[i], entities))
