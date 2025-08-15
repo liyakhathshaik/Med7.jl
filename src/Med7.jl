@@ -157,12 +157,12 @@ function (model::Med7Model)(text::String)
         doc = model.nlp(text)
         entities = Entity[]
         
-        for entity in doc.ents
+        for ent in doc.ents
             push!(entities, Entity(
-                Int(entity.start_char) + 1,  # Julia uses 1-based indexing
-                Int(entity.end_char),
-                String(entity.label_),
-                String(entity.text)
+                Int(ent.start_char) + 1,  # Julia uses 1-based indexing
+                Int(ent.end_char),
+                String(ent.label_),
+                String(ent.text)
             ))
         end
         
@@ -205,12 +205,12 @@ function (model::Med7Model)(texts::Vector{String})
         
         for (i, doc) in enumerate(spacy_docs)
             entities = Entity[]
-            for entity in doc.ents
+            for ent in doc.ents
                 push!(entities, Entity(
-                    Int(entity.start_char) + 1,
-                    Int(entity.end_char), 
-                    String(entity.label_),
-                    String(entity.text)
+                    Int(ent.start_char) + 1,
+                    Int(ent.end_char), 
+                    String(ent.label_),
+                    String(ent.text)
                 ))
             end
             push!(docs, Doc(texts[i], entities))
