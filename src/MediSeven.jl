@@ -114,8 +114,8 @@ Process a medical text and extract entities.
 ```julia
 model = MediSeven.load_model()
 doc = model("Patient prescribed 20mg lisinopril twice daily")
-for ent in doc.ents
-    println("$(ent.text) -> $(ent.label)")
+for entity in doc.ents
+    println(entity.text, " -> ", entity.label)
 end
 ```
 """
