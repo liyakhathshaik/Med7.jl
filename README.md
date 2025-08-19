@@ -4,14 +4,14 @@
 [![Coverage](https://codecov.io/gh/liyakhathshaik/MediSeven.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/liyakhathshaik/MediSeven.jl)
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
 
-A robust Julia package for medical named entity recognition (NER) using transformer models. MediSeven.jl provides state-of-the-art extraction of medical entities like drugs, dosages, frequencies, and routes from clinical text.
+A robust Julia package for medical named entity recognition (NER) using spaCy models. MediSeven.jl provides state-of-the-art extraction of medical entities like drugs, dosages, frequencies, and routes from clinical text.
 
 ## Features
 
 - 🏥 **Medical NER**: Extract DRUG, DOSAGE, FREQUENCY, DURATION, ROUTE, FORM, and STRENGTH entities
 - 🔄 **Automatic Fallbacks**: Robust model loading with multiple fallback options
 - ⚡ **Batch Processing**: Efficient processing of multiple texts
-- 🤖 **Transformer-Powered**: Built on HuggingFace transformers
+- 🤖 **spaCy-Powered**: Built on spaCy and spaCy models
 - 📊 **Production Ready**: Comprehensive error handling and logging
 
 ## Installation
@@ -95,13 +95,13 @@ end
 
 ## Fallback Models
 
-MediSeven.jl automatically tries multiple models in order of preference:
+MediSeven.jl automatically tries multiple spaCy models in order of preference:
 
-1. `kormilitzin/en_core_med7_lg` (primary)
-2. `Clinical-AI-Apollo/Medical-NER`
-3. `d4data/biomedical-ner-all` 
-4. `alvaroalon2/biobert_diseases_ner`
-5. `microsoft/BiomedNLP-PubMedBERT-base-uncased-abstract-fulltext`
+kormilitzin/en_core_med7_lg (primary)
+en_core_med7_lg
+en_core_web_sm
+en_core_web_md
+en_core_web_lg
 
 ## Development
 
@@ -162,4 +162,5 @@ limitations under the License.
 - Built with [PyCall.jl](https://github.com/JuliaPy/PyCall.jl) for Python integration
 - Uses [HTTP.jl](https://github.com/JuliaWeb/HTTP.jl) for web requests
 - JSON handling via [JSON3.jl](https://github.com/quinnj/JSON3.jl)
+
 - Based on the original [Med7](https://github.com/kormilitzin/med7) Python package by Andrey Kormilitzin et al.
