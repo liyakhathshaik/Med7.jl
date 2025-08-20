@@ -1,7 +1,6 @@
 # MediSeven.jl
 
 [![Build Status](https://github.com/liyakhathshaik/MediSeven.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/liyakhathshaik/MediSeven.jl/actions/workflows/CI.yml?query=branch%3Amain)
-[![Coverage](https://codecov.io/gh/liyakhathshaik/MediSeven.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/liyakhathshaik/MediSeven.jl)
 [![Code Style: Blue](https://img.shields.io/badge/code%20style-blue-4495d1.svg)](https://github.com/invenia/BlueStyle)
 
 A robust Julia package for medical named entity recognition (NER) using spaCy models. MediSeven.jl provides state-of-the-art extraction of medical entities like drugs, dosages, frequencies, and routes from clinical text.
@@ -164,3 +163,4 @@ limitations under the License.
 - JSON handling via [JSON3.jl](https://github.com/quinnj/JSON3.jl)
 
 - Based on the original [Med7](https://github.com/kormilitzin/med7) Python package by Andrey Kormilitzin et al.
+
